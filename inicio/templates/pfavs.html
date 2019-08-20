@@ -1,0 +1,90 @@
+{%extends 'index.html'%}
+
+{%load static%}
+
+{% load mathfilters %}
+
+{%block contenido%}
+
+
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<h4>Tus favoritos</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div class="row">
+
+			{% for fav in productos %}
+				
+				<div class="col-md-4 col-xl-3" style="margin: 10px 0px" id="{{fav.producto.id}}">
+					<div class="card card-blog">
+						<div class="card-header card-header-image">
+							<a href="#">
+								<img class="img" src="{{fav.producto.imagen.url}}" height="200px" width="100%">
+							</a>
+						</div>
+						<div class="card-body">
+							<h4 class="card-title">
+								{{fav.producto.nombre}}
+							</h4>
+
+							{% if fav.producto.oferta and fav.producto.oferta.porcentajeInt > 0 %}
+					  		 <!-- Label -->
+						    	<h5 class="pink-text pb-2 pt-1"><i class="fas fa-price"></i>{{fav.producto.oferta.porcentaje}} de descuento</h5>
+					  			<strike>
+									<h6 class="card-category text-info">${{fav.producto.costo}} MXN</h6>
+								</strike>
+								<b>
+									<h4 class="card-category text-danger">${{ fav.producto.oferta.porcentajeInt|div:100|mul:fav.producto.costo|sub:fav.producto.costo|abs }}</h4>
+								</b>
+					  		{% else %}
+					  			<span class="text-info"><b>${{fav.producto.costo}}.00 MXN</b></span>
+					  		{% endif %}
+
+							<p class="card-description limitado">
+								{{fav.producto.descripcion}}
+							</p>
+							
+							    <a type="button" class="btn-floating btn-small btn-danger" onclick="deleteFavorite({{fav.producto.id}})">
+							    	<i class="fa fa-trash"></i>
+							    </a>
+
+						</div>
+						<div class="card-body ">
+
+							<a href="/details/{{fav.producto.id}}" class="card-link">Ver detalles</a>
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+		</div>
+		
+
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+	function ellipsis_box(elemento, max_chars){
+		$(elemento).each(function(index,el) {
+			limite_text = $(el).text();
+			if (limite_text.length > max_chars){
+				limite = limite_text.substr(0, max_chars)+" ...";
+				$(el).text(limite);
+			}
+		});
+	}
+	$(function(){
+		ellipsis_box(".limitado", 100);
+	});
+	</script>
+
+{%endblock%}

@@ -1,0 +1,55 @@
+{%extends 'index.html'%}
+
+{%block sidebar%}
+
+	  <div class="sidebar-wrapper">
+		<div class="user">
+		  <div class="photo">
+			<img src="https://demos.creative-tim.com/material-dashboard-pro/assets/img/faces/avatar.jpg" />
+		  </div>
+		  <div class="user-info">
+			<a data-toggle="collapse" href="#collapseExample" class="username">
+			  <span>
+				Tania Andrew
+				<b class="caret"></b>
+			  </span>
+			</a>
+			<div class="collapse" id="collapseExample">
+			  <ul class="nav">
+				<li class="nav-item">
+				  <a class="nav-link" href="#">
+					<span class="sidebar-mini"> MP </span>
+					<span class="sidebar-normal"> My Profile </span>
+				  </a>
+				</li>
+
+			  </ul>
+			</div>
+		  </div>
+		</div>
+		<ul class="nav">
+		  <li class="nav-item ">
+			<a class="nav-link" href="{%url 'home'%}">
+			  <i class="material-icons">dashboard</i>
+			  <p> Dashboard </p>
+			</a>
+		  </li>
+
+		  <li class="nav-item ">
+			<a class="nav-link" href="{%url 'list'%}">
+			  <i class="material-icons">list</i>
+			  <p> Lista de productos </p>
+			</a>
+		  </li>
+
+		  <li class="nav-item ">
+			<a class="nav-link" href="{%url 'register'%}">
+			  <i class="material-icons">add</i>
+			  <p> Registrar </p>
+			</a>
+		  </li>
+		 
+		</ul>
+	  </div>
+
+{%endblock%}

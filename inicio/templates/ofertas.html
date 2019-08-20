@@ -1,0 +1,114 @@
+{%extends 'index.html'%}
+
+{% load mathfilters %}
+
+{%block contenido%}
+
+	<div class="container">
+		
+		<div class="row">
+
+			{% for prod in ofertas %}
+
+				{%if prod.oferta and prod.oferta.porcentajeInt > 0 %}
+					
+				
+					<div class="col-md-4 col-xl-3">
+						
+							<!-- Card Narrower -->
+						<div class="card card-cascade narrower">
+
+						  <!-- Card image -->
+						  <div class="view view-cascade overlay">
+						    <img  class="card-img-top" src="{{prod.imagen.url}}" alt="{{prod.nombre}}" height="200px">
+						    <a>
+						      <div class="mask rgba-white-slight"></div>
+						    </a>
+						  </div>
+
+						  <!-- Card content -->
+						  <div class="card-body card-body-cascade">
+
+						    <!-- Label -->
+						    <h5 class="pink-text pb-2 pt-1"><i class="fas fa-price"></i>{{prod.oferta.porcentaje}} de descuento</h5>
+						    <!-- Title -->
+						    <h4 class="font-weight-bold card-title">{{prod.nombre}}</h4>
+						    <!-- Text -->
+						    <p class="card-text limitado">{{prod.descripcion}}</p>
+						    <!-- Button -->
+							{% if prod.oferta %}
+					  			<strike>
+									<h6 class="card-category text-info">${{prod.costo}} MXN</h6>
+								</strike>
+								<b>
+									<h4 class="card-category text-danger">${{ prod.oferta.porcentajeInt|div:100|mul:prod.costo|sub:prod.costo|abs }}</h4>
+								</b>
+					  		{% else %}
+					  			<span class="text-info"><b>${{prod.costo}}.00 MXN</b></span>
+					  		{% endif %}
+
+						    <!-- Facebook -->
+								    <a type="button" class="btn-floating btn-small btn-danger" onclick="addFavorite({{prod.id}})">
+								    	<i class="fa fa-heart"></i>
+								    </a>
+
+						  </div>
+
+						  <!-- Card footer -->
+						  <div class="card-body  text-center">
+						   <a href="/details/{{prod.id}}" class="card-link">Ver detalles</a>
+						  </div>
+
+						</div>
+						<!-- Card Narrower -->
+					</div>
+							
+				{%endif%}
+
+
+			{% endfor %}
+
+		</div>
+		<br><br>
+		<div class="row">
+			<b><h2>Productos relacionados</h2></b>
+		</div>
+		<div class="row">
+			
+			
+			{% for prod in related %}
+
+
+
+				<div class="col-md-4 col-sm-8 col-xs-8">
+					<div class="card" >
+					  <img class="card-img-top" src="{{prod.imagen.url}}" alt="Card image cap" height="200px">
+					  <div class="card-body">
+					  	<h5 class="card-title">{{prod.nombre}}</h5>
+						<p class="card-text "><small class="text-muted"><a href="/details/{{prod.id}}" class="card-link text-danger">Ver detalles</a></small></p>
+					  </div>
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+	</div>
+
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+	function ellipsis_box(elemento, max_chars){
+		$(elemento).each(function(index,el) {
+			limite_text = $(el).text();
+			if (limite_text.length > max_chars){
+				limite = limite_text.substr(0, max_chars)+" ...";
+				$(el).text(limite);
+			}
+		});
+	}
+	$(function(){
+		ellipsis_box(".limitado", 100);
+	});
+	</script>
+
+{%endblock%}

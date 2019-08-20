@@ -1,0 +1,88 @@
+{%extends 'index.html'%}
+{% load mathfilters %}
+{%block contenido%}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<span>
+							Resultados de la busquda:
+							<b>'{{request.GET.q}}'</b>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+
+		<div class="row">
+
+			{% for prod in productos %}
+				
+				<div class="col-md-4 col-xl-3" style="margin: 10px 0px">
+					<div class="card card-blog">
+						<div class="card-header card-header-image">
+							<a href="#">
+								<img class="img" src="/media/{{prod.imagen}}" height="200px" width="100%">
+							</a>
+						</div>
+						<div class="card-body">
+							<h4 class="card-title">
+								{{prod.nombre}}
+							</h4>
+
+							{% if prod.oferta and prod.oferta.porcentajeInt > 0 %}
+					  		 <!-- Label -->
+						    	<h5 class="pink-text pb-2 pt-1"><i class="fas fa-price"></i>{{prod.oferta.porcentaje}} de descuento</h5>
+					  			<strike>
+									<h6 class="card-category text-info">${{prod.costo}} MXN</h6>
+								</strike>
+								<b>
+									<h4 class="card-category text-danger">${{ prod.oferta.porcentajeInt|div:100|mul:prod.costo|sub:prod.costo|abs }}</h4>
+								</b>
+					  		{% else %}
+					  			<span class="text-info"><b>${{prod.costo}}.00 MXN</b></span>
+					  		{% endif %}
+							<p class="card-description limitado">
+								{{prod.descripcion}}
+							</p>
+							
+							    <a type="button" class="btn-floating btn-small btn-danger" onclick="addFavorite({{prod.id}})">
+							    	<i class="fa fa-heart"></i>
+							    </a>
+
+
+						</div>
+						<div class="card-body ">
+
+							<a href="/details/{{prod.id}}" class="card-link">Ver detalles</a>
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+	function ellipsis_box(elemento, max_chars){
+		$(elemento).each(function(index,el) {
+			limite_text = $(el).text();
+			if (limite_text.length > max_chars){
+				limite = limite_text.substr(0, max_chars)+" ...";
+				$(el).text(limite);
+			}
+		});
+	}
+	$(function(){
+		ellipsis_box(".limitado", 100);
+	});
+	</script>
+
+{%endblock%}

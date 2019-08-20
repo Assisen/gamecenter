@@ -1,0 +1,121 @@
+{%extends 'index.html'%}
+
+{% load mathfilters %}
+
+{%block contenido%}
+
+	<div class="container">
+		
+		  <div class="card">
+		  	<div class="card-header">
+				<h4>Actualiza tus datos</h4>
+			</div>
+			  <div class="card-body">
+			  	<div class="row">
+			  		<div class="col-md-4">
+				  		<form class="md-form" method="POST" action="" enctype="multipart/form-data">
+				  			{% csrf_token %}
+				  			<input type="hidden" name="frm" value="frm_pp">
+						  <div class="file-field ">
+						    <div class="mb-4 d-flex justify-content-center">
+						      <img src="{{user.userprofile.pp.url}}"
+						        class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar" width="200px" height="200px">
+						    </div>
+						    <div class="d-flex justify-content-center">
+						      <div class="btn btn-mdb-color btn-rounded float-left">
+						        <span>Actualizar foto</span>
+						        <input type="file" onchange="submit()" name="pp">
+						      </div>
+						    </div>
+						  </div>
+						</form>
+				  	</div>
+				  	<div class="col-md-8">
+				  		<div class="card-body">
+				  			<form action="" method="POST">
+				  				{% csrf_token %}
+				  				<input type="hidden" name="frm" value="frm_txt">
+
+				  				<div class="col">
+				                    <!-- First name -->
+				                    <div class="md-form">
+				                        <input type="text" id="UserNameInput" class="form-control" value="{{user.username}}" name="username">
+				                        <label for="UserNameInput">Nombre de usuario</label>
+				                    </div>
+				                </div>
+				                <div class="col">
+				                    <div class="md-form">
+				                        <input type="text" id="firsNameInput" class="form-control" value="{{user.first_name}}" name="firstName">
+				                        <label for="firsNameInput">Nombre</label>
+				                    </div>
+				                </div>
+				                <div class="col">
+				                    <div class="md-form">
+				                        <input type="text" id="LastNameInput" class="form-control" value="{{user.last_name}}" name="lastName">
+				                        <label for="LastNameInput">Apellidos</label>
+				                    </div>
+				                </div>
+				                <div class="col">
+				                    <div class="md-form">
+				                        <input type="text" id="EmailInput" class="form-control" value="{{user.email}}" name="email">
+				                        <label for="EmailInput">Correo</label>
+				                    </div>
+				                </div>
+				                <div class="col">
+				                	<div class="md-form">
+				                		<button type="submit" class="btn btn-outline-success waves-effect">Actualizar</button>
+				                	</div>
+				                </div>
+				  			</form>
+
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+		 </div>
+		  <!-- Grid column -->
+		  
+	</div>
+	<br><br>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h4>Actualiza tu contraseña</h4>
+			</div>
+		  	<div class="card-body">
+		  		<form action="" method="POST">
+				  				{% csrf_token %}
+				  				<input type="hidden" name="frm" value="frm_pass">
+
+				  				<div class="col">
+				                    <!-- First name -->
+				                    <div class="md-form">
+				                        <input type="password" id="UserNameInput1" class="form-control" value="" name="pass">
+				                        <label for="UserNameInput1">Contraseña actual</label>
+				                    </div>
+				                </div>
+				                <div class="col">
+				                    <div class="md-form">
+				                        <input type="password" id="firsNameInput2" class="form-control" value="" name="pass1">
+				                        <label for="firsNameInput2">Nueva Contraseña</label>
+				                    </div>
+				                </div>
+				                <div class="col">
+				                    <div class="md-form">
+				                        <input type="password" id="LastNameInput3" class="form-control" value="" name="pass2">
+				                        <label for="LastNameInput3">Confirmar contraseña</label>
+				                    </div>
+				                </div>
+
+				                <div class="col">
+				                	<div class="md-form">
+				                		<button type="submit" class="btn btn-outline-success waves-effect">Actualizar</button>
+				                	</div>
+				                </div>
+				  			</form>
+		  	</div>
+		  </div>
+	</div>
+
+
+{%endblock%}
