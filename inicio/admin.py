@@ -35,7 +35,6 @@ class AdministrarContacto(admin.ModelAdmin):
     date_hierarchy = 'createdat'
     list_filter = ('nombre','createdat')
 
-# Register your models here.
 admin.site.register(Tipo, AdministrarModelo)
 admin.site.register(Producto, AdministrarProducto)
 admin.site.register(Favorito, AdministrarFavorito)
