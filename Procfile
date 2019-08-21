@@ -1,1 +1,1 @@
-web: gunicorn masterinformatic.wsgi --log-file - 
+web: gunicorn GameCenter.wsgi --log-file - 
