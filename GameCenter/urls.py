@@ -29,3 +29,8 @@ handler500 = 'inicio.views.handler500'
 if settings.DEBUG:
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Change admin site title
+admin.site.site_header = "GameCenter"
+admin.site.site_title = "Administracion"
+admin.site.index_title = "Administracion"

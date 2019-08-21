@@ -6,7 +6,7 @@ SECRET_KEY = '6=h=khvgdt0g&^bpuwagd-2-*wrnid6d)0zm2&+=+eyn+3!*=2'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost","masterinformatic.herokuapp.com","https://masterinformatic.herokuapp.com/"]
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,7 +71,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
