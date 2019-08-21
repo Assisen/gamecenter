@@ -1,0 +1,1 @@
+web: gunicorn gamecenter.wsgi --log-file - 
