@@ -8,8 +8,21 @@
 		
 		<div class="row">
 
+			{%if not productos%}
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<h4>Lo sentimos pero aun tenemos productos en esta seccion</h4>
+								
+							</div>
+						</div>
+					</div>
+			{%endif%}
+
+
 			{% for prod in productos %}
-				
+
+
 				<div class="col-md-4 col-xl-3" style="margin: 10px 0px">
 					<div class="card card-blog">
 						<div class="card-header card-header-image">
@@ -54,11 +67,11 @@
 			{% endfor %}
 
 		</div>
+
+		{%if related%}
 		
 		<!-- Section: Products v.5 -->
 			<section class="text-center my-5">
-
-
 
 			  <!-- Carousel Wrapper -->
 			  <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -84,6 +97,8 @@
 			    </ol>
 			    <!-- Indicators -->
 			    <!-- Slides -->
+			
+			      		
 			    <div class="carousel-inner" role="listbox">
 			      <!-- First slide -->
 			      <div class="carousel-item active">
@@ -209,6 +224,9 @@
 
 			</section>
 			<!-- Section: Products v.5 -->
+			{%else%}
+			<div style="height: 400px"></div>
+			{%endif%}
 
 	</div>
 

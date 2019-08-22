@@ -44,6 +44,7 @@ urlpatterns += [
 ]
 
 
+handler403 = 'inicio.views.handler403'
 handler404 = 'inicio.views.handler404'
 handler500 = 'inicio.views.handler500'
 

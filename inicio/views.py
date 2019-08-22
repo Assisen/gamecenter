@@ -114,8 +114,10 @@ def logout(request):
 	return redirect("/")
 
 def categoria(request, idcat=0):
+	
 	productos = Producto.objects.all().filter(tipo=idcat)
 	tipos = Tipo.objects.all()
+
 	return render(request, "inicio.html", {
 		"productos":productos,
 		"tipos":tipos,
@@ -285,6 +287,9 @@ def contacto(request):
 	return render(request, "contacto.html", {
 		"tipos":tipos,
 	})	
+
+def handler403(request, exception):
+    return render(request, 'error/500.html')
 
 def handler404(request, exception):
     return render(request, 'error/404.html')
