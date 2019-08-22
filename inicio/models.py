@@ -86,3 +86,15 @@ class Contacto(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
+class Banners(models.Model):
+	banner = models.ImageField(verbose_name="Banner", null=True, upload_to='banners/')
+	createdat = models.DateTimeField(auto_now_add=True,verbose_name="Creado")
+
+	class Meta:
+		verbose_name = "Banner"
+		verbose_name_plural = "Banners"
+		ordering = ["-createdat"]
+
+	def __str__(self):
+		return self.nombre

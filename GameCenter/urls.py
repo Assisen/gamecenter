@@ -1,10 +1,15 @@
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path
-from django.conf.urls import url
 from inicio import views
-from django.views.static import serve
+from rest_framework import routers
+from inicio.prod_api import ProductoViewSet
+
+router = routers.DefaultRouter()
+router.register(r'productos', ProductoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +30,7 @@ urlpatterns = [
     path('login', views.login, name="login"),
     path('logout', views.logout, name="logout"),
     
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
 if not settings.DEBUG:
     urlpatterns += [
@@ -33,6 +38,10 @@ if not settings.DEBUG:
         url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
         url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     ]
+
+urlpatterns += [
+    url(r'^api/', include(router.urls)),
+]
 
 
 handler404 = 'inicio.views.handler404'

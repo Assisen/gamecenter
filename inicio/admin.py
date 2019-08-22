@@ -30,7 +30,7 @@ class AdministrarUserProfile(admin.ModelAdmin):
 
 
 class AdministrarContacto(admin.ModelAdmin):
-    list_display = ('nombre','createdat')
+    list_display = ('nombre','correo','telefono','asunto','mensaje','createdat')
     search_fields = ('nombre','createdat')
     date_hierarchy = 'createdat'
     list_filter = ('nombre','createdat')
