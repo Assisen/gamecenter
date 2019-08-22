@@ -28,12 +28,17 @@ class AdministrarFavorito(admin.ModelAdmin):
 class AdministrarUserProfile(admin.ModelAdmin):
     list_display = ('pp','user')
 
-
 class AdministrarContacto(admin.ModelAdmin):
     list_display = ('nombre','correo','telefono','asunto','mensaje','createdat')
     search_fields = ('nombre','createdat')
     date_hierarchy = 'createdat'
     list_filter = ('nombre','createdat')
+
+class AdministrarBanner(admin.ModelAdmin):
+    list_display = ('banner','createdat')
+    search_fields = ('banner','createdat')
+    date_hierarchy = 'createdat'
+    list_filter = ('banner','createdat')
 
 admin.site.register(Tipo, AdministrarModelo)
 admin.site.register(Producto, AdministrarProducto)
@@ -41,4 +46,4 @@ admin.site.register(Favorito, AdministrarFavorito)
 admin.site.register(Oferta, AdministrarOferta)
 admin.site.register(UserProfile, AdministrarUserProfile)
 admin.site.register(Contacto, AdministrarContacto)
-admin.site.register(Banners)
+admin.site.register(Banners, AdministrarBanner)
