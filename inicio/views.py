@@ -1,4 +1,4 @@
-from .models import Producto, Oferta, Tipo, Favorito, UserProfile, Contacto
+from .models import Producto, Oferta, Tipo, Favorito, UserProfile, Contacto, Banners
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
@@ -64,15 +64,16 @@ def register(request):
 def inicio(request):
 
 	productos = Producto.objects.all()
-	related   = Producto.objects.order_by('id')[:6]
+	related   = Producto.objects.order_by('id')[:5]
 	tipos = Tipo.objects.all()
-
+	banners = Banners.objects.all().order_by('id')
 	return render(
 		request, "inicio.html",
 		{
 			"productos":productos,
 			"related":related,
 			"tipos":tipos,
+			"banners":banners,
 		})
 
 def ofertas(request):

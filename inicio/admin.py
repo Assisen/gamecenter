@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Producto, Favorito, Tipo, Oferta, UserProfile, Contacto
+from .models import Producto, Favorito, Tipo, Oferta, UserProfile, Contacto, Banners
 
 class AdministrarModelo(admin.ModelAdmin):
     list_display = ('nombre', 'createdat')
@@ -41,3 +41,4 @@ admin.site.register(Favorito, AdministrarFavorito)
 admin.site.register(Oferta, AdministrarOferta)
 admin.site.register(UserProfile, AdministrarUserProfile)
 admin.site.register(Contacto, AdministrarContacto)
+admin.site.register(Banners)

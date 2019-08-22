@@ -96,5 +96,3 @@ class Banners(models.Model):
 		verbose_name_plural = "Banners"
 		ordering = ["-createdat"]
 
-	def __str__(self):
-		return self.nombre
