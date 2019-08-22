@@ -1,4 +1,4 @@
 django==2.2.1
 django-mathfilters
 gunicorn
-djangorestframework==3.6.3
+djangorestframework
