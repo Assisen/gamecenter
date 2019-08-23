@@ -15,13 +15,12 @@ class AdministrarOferta(admin.ModelAdmin):
 
 class AdministrarProducto(admin.ModelAdmin):
     list_display = ('nombre', 'tipo','createdat')
-    search_fields = ('nombre', 'tipo','createdat')
+    search_fields = ('nombre', 'createdat')
     date_hierarchy = 'createdat'
-    list_filter = ('nombre', 'tipo','createdat')
+    list_filter = ('tipo','createdat')
 
 class AdministrarFavorito(admin.ModelAdmin):
     list_display = ('user','createdat')
-    search_fields = ('user','createdat')
     date_hierarchy = 'createdat'
     list_filter = ('user','createdat')
 
