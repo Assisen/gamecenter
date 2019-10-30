@@ -1,4 +1,4 @@
-django==2.2.1
+django==2.2.4
 django-mathfilters
 gunicorn
 djangorestframework==3.10.2
